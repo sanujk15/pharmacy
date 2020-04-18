@@ -65,6 +65,7 @@
 		$query.=" where product_status = '1' ";
 	}
 
+	echo $offset;
 	echo $query .= "LIMIT $offset, $no_of_records_per_page";
 	//$sql=mysqli_query($conn, $query);
 	$sql = mysqli_query($conn, $query) or die("database error:". mysqli_error($conn));

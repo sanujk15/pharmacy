@@ -14,7 +14,7 @@
 			
 	if(isset($_POST["action"]))
  {
-	 if (isset($_POST['pageno'])) {
+	 if (isset($_POST['pageno']) && $_POST['pageno'] > 0) {
             $pageno = $_POST['pageno'];
         } else {
             $pageno = 1;
@@ -65,8 +65,7 @@
 		$query.=" where product_status = '1' ";
 	}
 
-	echo $offset;
-	echo $query .= "LIMIT $offset, $no_of_records_per_page";
+	$query .= "LIMIT $offset, $no_of_records_per_page";
 	//$sql=mysqli_query($conn, $query);
 	$sql = mysqli_query($conn, $query) or die("database error:". mysqli_error($conn));
 	// if(gettype($sql) == boolean)
@@ -75,10 +74,6 @@
 	// }
 	// echo gettype($sql);
 	$output = '';
-
-
-	var_dump($sql);
-	var_dump(mysqli_fetch_array($sql));
 	if(mysqli_num_rows($sql)){
 	while($product_array=mysqli_fetch_array($sql)){
 		

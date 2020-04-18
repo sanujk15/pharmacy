@@ -20,7 +20,13 @@
             $pageno = 1;
         }
         $no_of_records_per_page = 9;
-        $offset = ($pageno-1) * $no_of_records_per_page;
+
+        if($pageno == 1){
+        	$offset = 0;
+        }else{
+        	$offset = ($pageno-1) * $no_of_records_per_page;
+        }
+        
 
 			
 			$total_pages_sql = "SELECT COUNT(*) FROM product ";
@@ -60,7 +66,6 @@
 	}
 
 	echo $query .= "LIMIT $offset, $no_of_records_per_page";
-	die;
 	//$sql=mysqli_query($conn, $query);
 	$sql = mysqli_query($conn, $query) or die("database error:". mysqli_error($conn));
 	// if(gettype($sql) == boolean)
@@ -73,7 +78,6 @@
 
 	var_dump($sql);
 	var_dump(mysqli_fetch_array($sql));
-	die;
 	if(mysqli_num_rows($sql)){
 	while($product_array=mysqli_fetch_array($sql)){
 		

@@ -181,14 +181,14 @@ if(isset($_GET["pageno"])){
 							
 
 						// Create connection
-						$con = mysqli_connect($servername, $username, $password, "pharmacy_db");
+						$conn = mysqli_connect($servername, $username, $password, "pharmacy_db");
 
 						// Check connection
 						if (mysqli_connect_error()) {
-							die("Connection failed: " . $con->connect_error);
+							die("Connection failed: " . $conn->connect_error);
 						}
 				
-						$sql=mysqli_query($con, "SELECT * FROM cart inner join product on product.product_id = cart.product_id where user_email = '$email_login'");
+						$sql=mysqli_query($conn, "SELECT * FROM cart inner join product on product.product_id = cart.product_id where user_email = '$email_login'");
 						$total_cost = 0;
 						if(mysqli_num_rows($sql)){
 								while($product_array=mysqli_fetch_array($sql)){

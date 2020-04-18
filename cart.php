@@ -113,7 +113,7 @@ if(isset($_GET["pageno"])){
           $product_id = $_POST['product_id'];
           $quantity = $_POST['quantity'];
 
-          $sql=mysqli_query($con, "UPDATE product SET product_count = product_count-'$quantity' WHERE product_id = '$product_id'");
+          $sql=mysqli_query($conn, "UPDATE product SET product_count = product_count-'$quantity' WHERE product_id = '$product_id'");
         
 
           $cart_select = "SELECT * FROM cart WHERE user_email='$email_login' and product_id=$product_id and checkedout=0";
@@ -121,19 +121,19 @@ if(isset($_GET["pageno"])){
           $cart_update = "UPDATE cart set quantity = quantity + $quantity where user_email='$email_login' and product_id=$product_id and checkedout=0";
 
 
-          $cart_select_result = mysqli_query($con, $cart_select);
+          $cart_select_result = mysqli_query($conn, $cart_select);
 
           if(mysqli_num_rows($cart_select_result)>0){
-            $cart_update_result = mysqli_query($con, $cart_update);
+            $cart_update_result = mysqli_query($conn, $cart_update);
           }
           else{
-            $cart_insert_result = mysqli_query($con, $cart_insert);
+            $cart_insert_result = mysqli_query($conn, $cart_insert);
           }
 
         }
       $cart_total = 0;
 			
-			$sql=mysqli_query($con, "SELECT p.product_image, p.product_name, p.product_cost, p.product_count, c.quantity, p.product_id FROM product p inner join cart c ON c.product_id = p.product_id where p.product_id in (SELECT product_id FROM cart WHERE user_email='$email_login' and checkedout=0)");
+			$sql=mysqli_query($conn, "SELECT p.product_image, p.product_name, p.product_cost, p.product_count, c.quantity, p.product_id FROM product p inner join cart c ON c.product_id = p.product_id where p.product_id in (SELECT product_id FROM cart WHERE user_email='$email_login' and checkedout=0)");
 			if(mysqli_num_rows($sql)){
 					while($product_array=mysqli_fetch_array($sql)){
 			?>

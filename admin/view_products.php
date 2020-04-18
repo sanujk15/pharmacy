@@ -7,7 +7,7 @@
 	
 	$get_pro = "select * from product where product_status='1'";
 	
-	$run_pro = mysqli_query($con, $get_pro); 
+	$run_pro = mysqli_query($conn, $get_pro); 
 	
 	$i = 0;
 	
@@ -48,7 +48,7 @@
 			    <?php
 					$include_once("db_connect.php");
 
-					$sql=mysqli_query($con, "SELECT * FROM category");
+					$sql=mysqli_query($conn, "SELECT * FROM category");
 
 					if(mysqli_num_rows($sql)){
 					while($product_array=mysqli_fetch_array($sql)){

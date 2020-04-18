@@ -15,7 +15,7 @@ if(isset($_POST["products"]) && isset($_SESSION["email_login"])){
 
         //echo $update_cart;
 
-        if($con -> query($product_update) === FALSE || $con -> query($update_cart) === FALSE){
+        if($conn -> query($product_update) === FALSE || $conn -> query($update_cart) === FALSE){
             die("Failed to update");
         }
     }

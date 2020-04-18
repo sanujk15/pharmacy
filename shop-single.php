@@ -82,7 +82,7 @@ if(isset($_GET["pageno"])){
 			
 			$product_id = $_GET['product_id'];
 			//echo $product_id;
-			$sql=mysqli_query($con, "SELECT * FROM product where product_id = '$product_id'");
+			$sql=mysqli_query($conn, "SELECT * FROM product where product_id = '$product_id'");
 			if(mysqli_num_rows($sql)){
 					while($product_array=mysqli_fetch_array($sql)){
 			?>

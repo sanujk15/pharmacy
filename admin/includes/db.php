@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost", "root", "" ,"pharmacy_db");
+$conn = mysqli_connect("localhost", "root", "" ,"pharmacy_db");
 
 
 ?>

@@ -7,7 +7,7 @@ if(isset($_GET['edit_deal'])){
 
 	$get_deal = "select * from deal where deal_name = '$deal_name'";
 
-	$run_deal = mysqli_query($con, $get_deal);
+	$run_deal = mysqli_query($conn, $get_deal);
 
 	$row_deal = mysqli_fetch_array($run_deal);
 	
@@ -47,7 +47,7 @@ if(isset($_GET['edit_deal'])){
 		
 		$update_deal = "update deal set deal_name= '$new_deal', deal_cost = '$deal_cost', deal_count = '$deal_count' where deal_name = '$update_deal_name'";
 
-		$run_deal = mysqli_query($con, $update_deal);
+		$run_deal = mysqli_query($conn, $update_deal);
 
 		if($run_deal){
 			echo "<script>alert('Deal has been updated')</script>";

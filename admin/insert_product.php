@@ -55,7 +55,7 @@ include("includes/db.php");
 						<option>Select a category</option>
 						<?php
 							$get_cats = "select * from category";
-							$run_cats = mysqli_query($con,$get_cats);
+							$run_cats = mysqli_query($conn,$get_cats);
 
 							while($row_cats = mysqli_fetch_array($run_cats)){
 								$category_id = $row_cats['category_id'];
@@ -108,7 +108,7 @@ include("includes/db.php");
 		
 		 $insert_product = "insert into product (product_name, product_cost, product_description, product_image, product_count, product_category, product_characteristic, product_status) values ('$product_name','$product_cost','$product_description','$product_image','$product_count','$product_category','$product_characteristic', '$product_status')";
 		 
-		 $insert_pro = mysqli_query($con, $insert_product);
+		 $insert_pro = mysqli_query($conn, $insert_product);
 		 
 		 if($insert_pro){
 		 

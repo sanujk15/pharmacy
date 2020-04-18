@@ -10,7 +10,7 @@ if(isset($_GET['edit_pro'])){
 	
 	$get_pro = "select * from product where product_id='$get_id'";
 	
-	$run_pro = mysqli_query($con, $get_pro); 
+	$run_pro = mysqli_query($conn, $get_pro); 
 	
 	$i = 0;
 	
@@ -28,7 +28,7 @@ if(isset($_GET['edit_pro'])){
 		
 		$get_cat = "select * from category where category_id='$product_category'";
 		
-		$run_cat=mysqli_query($con, $get_cat); 
+		$run_cat=mysqli_query($conn, $get_cat); 
 		
 		$row_cat=mysqli_fetch_array($run_cat); 
 		
@@ -36,7 +36,7 @@ if(isset($_GET['edit_pro'])){
 		
 		// $get_brand = "select * from brands where brand_id='$pro_brand'";
 		
-		// $run_brand=mysqli_query($con, $get_brand); 
+		// $run_brand=mysqli_query($conn, $get_brand); 
 		
 		// $row_brand=mysqli_fetch_array($run_brand); 
 		
@@ -100,7 +100,7 @@ if(isset($_GET['edit_pro'])){
 				<select name="product_category" >
 					<option><?php echo $category_name; ?></option>
 					<?php $get_cats = "select * from category";
-						$run_cats = mysqli_query($con, $get_cats);
+						$run_cats = mysqli_query($conn, $get_cats);
 					
 						while ($row_cats=mysqli_fetch_array($run_cats)){
 					
@@ -162,7 +162,7 @@ if(isset($_GET['edit_pro'])){
 
 		$update_product = "update product set product_name='$product_name', product_cost='$product_cost',  product_description='$product_description', product_image='$product_image', product_count='$product_count',  product_characteristic='$product_characteristic', product_category='$product_category',  product_status='$product_status' where product_id='$update_id'";
 		 
-		 $run_product = mysqli_query($con, $update_product);
+		 $run_product = mysqli_query($conn, $update_product);
 		 
 		 if($run_product){
 		 

@@ -17,7 +17,7 @@
 	
 	$get_c = "select * from orders";
 	
-	$run_c = mysqli_query($con, $get_c); 
+	$run_c = mysqli_query($conn, $get_c); 
 	
 	$i = 0;
 	

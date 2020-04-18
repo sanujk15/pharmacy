@@ -10,11 +10,11 @@ if(isset($_POST["product_id"]) && isset($_SESSION["email_login"])){
   
   include_once("db_connect.php");
 
-    if($con -> query($product_update) === FALSE){
+    if($conn -> query($product_update) === FALSE){
         die("Failed to remove");
     }
 
-    if($con -> query($cart_delete) === TRUE){
+    if($conn -> query($cart_delete) === TRUE){
         echo "Successfully removed";
     }
     else echo "Failed to remove";

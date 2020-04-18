@@ -17,7 +17,7 @@
 	
 	$get_cat = "select * from category where category_status = '1'";
 	
-	$run_cat = mysqli_query($con, $get_cat); 
+	$run_cat = mysqli_query($conn, $get_cat); 
 	
 	$i = 0;
 	

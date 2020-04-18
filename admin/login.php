@@ -103,7 +103,7 @@ if(isset($_POST['login'])){
 	$pass = $_POST['password'];
 
 	$sel_user = "select * from admins where user_email = '$email' AND user_pass = '$pass'";
-	$run_user = mysqli_query($con, $sel_user);
+	$run_user = mysqli_query($conn, $sel_user);
 
 	$check_user = mysqli_num_rows($run_user);
 	if($check_user == 0){

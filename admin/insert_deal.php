@@ -28,7 +28,7 @@ else {
 
 		$insert_deal = "insert into deal(deal_name, deal_cost, deal_count) values('$new_deal', '$deal_cost', '$deal_count')";
 
-		$run_deal = mysqli_query($con, $insert_deal);
+		$run_deal = mysqli_query($conn, $insert_deal);
 
 		if($run_deal){
 			echo "<script>alert('New Deal has been inserted')</script>";

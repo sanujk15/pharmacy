@@ -11,14 +11,14 @@
             
 
         // Create connection
-        $con = mysqli_connect($servername, $username, $password, "pharmacy_db");
+        $conn = mysqli_connect($servername, $username, $password, "pharmacy_db");
 
         // Check connection
         if (mysqli_connect_error()) {
-            die("Connection failed: " . $con->connect_error);
+            die("Connection failed: " . $conn->connect_error);
         }
 		
-		$result = mysqli_query($con, "UPDATE deal SET deal_count = deal_count + 1 where deal_name='$code'");
+		$result = mysqli_query($conn, "UPDATE deal SET deal_count = deal_count + 1 where deal_name='$code'");
 		if($result){				
 			unset($_SESSION["coupon_cost"]);
 			echo "Coupon is removed.";

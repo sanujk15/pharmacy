@@ -96,7 +96,7 @@
 <?php
 session_start();
 
-include('includes/db.php');
+include_once("db_connect.php");
 
 if(isset($_POST['login'])){
 	$email = $_POST['email'];

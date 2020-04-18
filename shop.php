@@ -106,7 +106,7 @@ if(isset($_GET["pageno"])){
 					$password = '';
 			   
 					// Create connection
-					$con = new mysqli($servername, $username, $password, "pharmacy_db");
+					$con = new mysqli($servername, $username, $password, "heroku_5259b59daae6cf4");
 
 					// Check connection
 					if ($con->connect_error) {

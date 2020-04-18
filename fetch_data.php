@@ -24,6 +24,9 @@
 
 			
 			$total_pages_sql = "SELECT COUNT(*) FROM product ";
+
+			var_dump($total_pages_sql);
+			die;
 			
 			if(isset($_POST['category'])){
 				$category_name = implode("','", $_POST["category"]);

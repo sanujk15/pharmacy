@@ -107,14 +107,12 @@ if(isset($_GET["pageno"])){
 
 					if(mysqli_num_rows($sql)){
 					while($product_array=mysqli_fetch_array($sql)){
-                    
-                 
-                    ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" <?php if(in_array(trim($product_array['category_name']),$categories)) echo 'checked'; else echo 'test'; ?> class="common_selector category" value="<?php echo $product_array['category_name']; ?>" > <?php echo $product_array['category_name']; ?> </label>
-                    </div>
-                    <?php    
-                    }
+              ?>
+              <div class="list-group-item checkbox">
+                  <label><input type="checkbox" <?php if(in_array(trim($product_array['category_name']),$categories)) echo 'checked'; else echo 'test'; ?> class="common_selector category" value="<?php echo $product_array['category_name']; ?>" > <?php echo $product_array['category_name']; ?> </label>
+              </div>
+              <?php    
+              }
 					}
                     ?>            
 				</ul>

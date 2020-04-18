@@ -10,17 +10,7 @@
 				$search_query = $_POST["query"];
 			}
 
-			//include_once("db_connect.php");
-
-			$servername = "us-cdbr-iron-east-01.cleardb.net";
-			$username = "b4540e0f2b47a1";
-			$password = "dc5d7a30";
-			$dbname = "heroku_5259b59daae6cf4";
-			$conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
-			if (mysqli_connect_errno()) {
-			printf("Connect failed: %s\n", mysqli_connect_error());
-			exit();
-			}
+			include_once("db_connect.php");
 			
 	if(isset($_POST["action"]))
  {
@@ -48,7 +38,15 @@
 			$total_pages = ceil($total_rows / $no_of_records_per_page);
 
 		
-			$query = "SELECT * FROM heroku_5259b59daae6cf4.product ";
+			$query = "SELECT * FROM product ";
+
+			$sql = "select * from product";
+	 		$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+
+	 		$row = mysqli_fetch_assoc($resultset);
+
+			var_dump($row);
+			die;
 			
 			//if(mysqli_num_rows($sql)){
 			//while($product_array=mysqli_fetch_array($sql)){

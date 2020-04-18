@@ -5,18 +5,8 @@ if(isset($_SESSION["email_login"])){
 		
 		$sql = "select * from deal where deal_name='$code'";
 		
-        $servername = 'localhost';
-        $username = 'root';
-        $password = '';
-            
-
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, "pharmacy_db");
-
-        // Check connection
-        if (mysqli_connect_error()) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+        
+						include_once("db_connect.php");
 		
 		$res = mysqli_query($conn, $sql);
 

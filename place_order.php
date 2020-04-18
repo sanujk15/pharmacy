@@ -20,12 +20,8 @@ if(isset($_SESSION["email_login"])){
             
 
         // Create connection
-        $conn = mysqli_connect($servername, $username, $password, "pharmacy_db");
-
-        // Check connection
-        if (mysqli_connect_error()) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+        
+		include_once("db_connect.php");
 		
 		$result = mysqli_query($conn, $update_order);
 		

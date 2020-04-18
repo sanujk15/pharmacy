@@ -175,18 +175,7 @@ if(isset($_GET["pageno"])){
                     <tbody>
 					
 					<?php
-						$servername = 'localhost';
-						$username = 'root';
-						$password = '';
-							
-
-						// Create connection
-						$conn = mysqli_connect($servername, $username, $password, "pharmacy_db");
-
-						// Check connection
-						if (mysqli_connect_error()) {
-							die("Connection failed: " . $conn->connect_error);
-						}
+						include_once("db_connect.php");
 				
 						$sql=mysqli_query($conn, "SELECT * FROM cart inner join product on product.product_id = cart.product_id where user_email = '$email_login'");
 						$total_cost = 0;

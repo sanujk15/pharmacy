@@ -33,20 +33,12 @@
 			if($search_query!="")
 				$total_pages_sql.=" where (product_name like '%".$search_query."%' or product_description like '%".$search_query."%') and  product_status = '1' ";
 
-			$result = mysqli_query($con,$total_pages_sql);
+			$result = mysqli_query($conn,$total_pages_sql);
 			$total_rows = mysqli_fetch_array($result)[0];
 			$total_pages = ceil($total_rows / $no_of_records_per_page);
 
 		
 			$query = "SELECT * FROM product ";
-
-			$sql = "select * from product";
-	 		$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
-
-	 		$row = mysqli_fetch_assoc($resultset);
-
-			var_dump($row);
-			die;
 			
 			//if(mysqli_num_rows($sql)){
 			//while($product_array=mysqli_fetch_array($sql)){
@@ -69,7 +61,7 @@
 
 	$query .= "LIMIT $offset, $no_of_records_per_page";
 
-	$sql=mysqli_query($con, $query);
+	$sql=mysqli_query($conn, $query);
 	// if(gettype($sql) == boolean)
 	// {
 	// $sql = (object)$sql;

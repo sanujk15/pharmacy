@@ -103,7 +103,7 @@ if(isset($_GET["pageno"])){
 			    <?php
 					include_once("db_connect.php");
 
-          $sql=mysqli_query($con, "SELECT * FROM category where category_status='1'");
+          $sql=mysqli_query($conn, "SELECT * FROM category where category_status='1'");
 
 					if(mysqli_num_rows($sql)){
 					while($product_array=mysqli_fetch_array($sql)){

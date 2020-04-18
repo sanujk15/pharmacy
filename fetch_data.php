@@ -61,7 +61,8 @@
 
 	$query .= "LIMIT $offset, $no_of_records_per_page";
 
-	$sql=mysqli_query($conn, $query);
+	//$sql=mysqli_query($conn, $query);
+	$sql = mysqli_query($conn, $query) or die("database error:". mysqli_error($conn));
 	// if(gettype($sql) == boolean)
 	// {
 	// $sql = (object)$sql;
@@ -70,7 +71,9 @@
 	$output = '';
 
 
-
+	var_dump($sql);
+	var_dump(mysqli_fetch_array($sql));
+	die;
 	if(mysqli_num_rows($sql)){
 	while($product_array=mysqli_fetch_array($sql)){
 		

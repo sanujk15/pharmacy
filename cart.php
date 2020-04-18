@@ -102,18 +102,7 @@ if(isset($_GET["pageno"])){
                 </thead>
                 <tbody>
 				<?php
-		    $servername = 'localhost';
-			$username = 'root';
-			$password = '';
-			 
-       
-			// Create connection
-			$con = new mysqli($servername, $username, $password, "pharmacy_db");
-
-			// Check connection
-			if ($con->connect_error) {
-				die("Connection failed: " . $con->connect_error);
-			}
+		    include_once("db_connect.php");
 			
 			//updata database table product --> product_count
 

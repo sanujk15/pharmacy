@@ -46,17 +46,7 @@
               <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
               <ul class="list-unstyled mb-0">
 			    <?php
-					$servername = 'localhost';
-					$username = 'root';
-					$password = '';
-			   
-					// Create connection
-					$con = new mysqli($servername, $username, $password, "pharmacy_db");
-
-					// Check connection
-					if ($con->connect_error) {
-						die("Connection failed: " . $con->connect_error);
-					}
+					$include_once("db_connect.php");
 
 					$sql=mysqli_query($con, "SELECT * FROM category");
 

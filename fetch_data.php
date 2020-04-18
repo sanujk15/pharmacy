@@ -10,18 +10,7 @@
 				$search_query = $_POST["query"];
 			}
 
-			$servername = 'localhost';
-			$username = 'root';
-			$password = '';
-			 
-       
-			// Create connection
-			$con = new mysqli($servername, $username, $password, "pharmacy_db");
-
-			// Check connection
-			if ($con->connect_error) {
-				die("Connection failed: " . $con->connect_error);
-			}
+			include_once("db_connect.php");
 			
 	if(isset($_POST["action"]))
  {

@@ -78,18 +78,7 @@ if(isset($_GET["pageno"])){
       <div class="container">
         <div class="row">
 		<?Php
-			$servername = 'localhost';
-			$username = 'root';
-			$password = '';
-			 
-       
-			// Create connection
-			$con = new mysqli($servername, $username, $password, "pharmacy_db");
-
-			// Check connection
-			if ($con->connect_error) {
-				die("Connection failed: " . $con->connect_error);
-			}
+			include_once("db_connect.php");
 			
 			$product_id = $_GET['product_id'];
 			//echo $product_id;

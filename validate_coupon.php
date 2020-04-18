@@ -6,7 +6,7 @@ if(isset($_SESSION["email_login"])){
 		$sql = "select * from deal where deal_name='$code'";
 		
         
-						include_once("db_connect.php");
+		include_once("db_connect.php");
 		
 		$res = mysqli_query($conn, $sql);
 

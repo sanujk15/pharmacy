@@ -38,7 +38,7 @@
 			$total_pages = ceil($total_rows / $no_of_records_per_page);
 
 		
-			$query = "SELECT * FROM product ";
+			$query = "SELECT * FROM heroku_5259b59daae6cf4.product ";
 			
 			//if(mysqli_num_rows($sql)){
 			//while($product_array=mysqli_fetch_array($sql)){
@@ -60,9 +60,6 @@
 	}
 
 	$query .= "LIMIT $offset, $no_of_records_per_page";
-	
-	echo $query;
-	die;
 
 	$sql=mysqli_query($con, $query);
 	// if(gettype($sql) == boolean)

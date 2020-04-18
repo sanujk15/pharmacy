@@ -24,9 +24,6 @@
 
 			
 			$total_pages_sql = "SELECT COUNT(*) FROM product ";
-
-			var_dump($total_pages_sql);
-			die;
 			
 			if(isset($_POST['category'])){
 				$category_name = implode("','", $_POST["category"]);
@@ -71,7 +68,15 @@
 	// }
 	// echo gettype($sql);
 	$output = '';
+
+
+	var_dump(mysqli_num_rows($sql));
+
 	if(mysqli_num_rows($sql)){
+
+		var_dump(mysqli_fetch_array($sql));
+		die;
+		
 	while($product_array=mysqli_fetch_array($sql)){
 		
 	?>

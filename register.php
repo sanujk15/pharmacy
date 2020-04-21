@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		$from="medicaldirects@gmail.com";
 		$fromname="Pharmacy";
 		$subject="Please verify your account";
-		$verfiyUrl = 'http://localhost/pharmacy/src/tokenVerification.php?email='.$user_email.'&token='.$token;
+		$verfiyUrl = 'https://pharmacydirect.herokuapp.com/tokenVerification.php?email='.$user_email.'&token='.$token;
 
 		$message='<!DOCTYPE html>
 					<html lang="en">

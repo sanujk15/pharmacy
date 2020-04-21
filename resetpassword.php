@@ -117,5 +117,12 @@ if(!isset($_GET["token"]) && !isset($_GET["email"])){
             Copyright &copy;<script>document.write(new Date().getFullYear());</script>
             </p>
           </div>
+          <script src="https://www.google.com/recaptcha/api.js?render=6Ld5VuwUAAAAAKKtpQCi1tnX-MsdDypWzY3BIIws"></script>
+          <script>
+          grecaptcha.ready(function() {
+          grecaptcha.execute('6Ld5VuwUAAAAAKKtpQCi1tnX-MsdDypWzY3BIIws', {action: 'homepage'}).then(function(token) {
+          });
+          });
+          </script>
     </footer>
 </html>

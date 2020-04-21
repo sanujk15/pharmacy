@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		$from="medicaldirects@gmail.com";
 		$fromname="Pharmacy";
 		$subject="Please Reset Your Password";
-		$resetUrl = 'http://localhost/pharmacy/src/resetpassword.php?email='.$user_email.'&token='.$token;
+		$resetUrl = 'https://pharmacydirect.herokuapp.com/resetpassword.php?email='.$user_email.'&token='.$token;
 
 		$message='<!DOCTYPE html>
 					<html lang="en">

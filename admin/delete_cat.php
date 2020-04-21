@@ -7,7 +7,7 @@ if(isset($_GET['delete_cat'])){
 
 	$delete_cat = "UPDATE category SET category_status = '0' where category_id = '$delete_id'";
 
-	$run_delete = mysqli_query($conn, $delete_cat);
+	$run_delete = mysqli_query($con, $delete_cat);
 
 	if($run_delete){
 		echo "<script>alert('Category has been deleted')</script>";

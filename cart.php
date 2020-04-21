@@ -102,7 +102,7 @@ if(isset($_GET["pageno"])){
                 </thead>
                 <tbody>
 				<?php
-		    include_once("db_connect.php");
+        include_once("db_connect.php");
 			
 			//updata database table product --> product_count
 
@@ -113,27 +113,29 @@ if(isset($_GET["pageno"])){
           $product_id = $_POST['product_id'];
           $quantity = $_POST['quantity'];
 
-          $sql=mysqli_query($conn, "UPDATE product SET product_count = product_count-'$quantity' WHERE product_id = '$product_id'");
-        
+          $sql=mysqli_query($con, "UPDATE product SET product_count = product_count-'$quantity' WHERE product_id = '$product_id'");
 
           $cart_select = "SELECT * FROM cart WHERE user_email='$email_login' and product_id=$product_id and checkedout=0";
           $cart_insert = "INSERT INTO cart (product_id, user_email, quantity) VALUES ($product_id, '$email_login', $quantity)";
           $cart_update = "UPDATE cart set quantity = quantity + $quantity where user_email='$email_login' and product_id=$product_id and checkedout=0";
 
 
-          $cart_select_result = mysqli_query($conn, $cart_select);
+
+          $cart_select_result = mysqli_query($con, $cart_select);
+
+          
 
           if(mysqli_num_rows($cart_select_result)>0){
-            $cart_update_result = mysqli_query($conn, $cart_update);
+            $cart_update_result = mysqli_query($con, $cart_update);
           }
           else{
-            $cart_insert_result = mysqli_query($conn, $cart_insert);
+            $cart_insert_result = mysqli_query($con, $cart_insert);
           }
 
         }
       $cart_total = 0;
 			
-			$sql=mysqli_query($conn, "SELECT p.product_image, p.product_name, p.product_cost, p.product_count, c.quantity, p.product_id FROM product p inner join cart c ON c.product_id = p.product_id where p.product_id in (SELECT product_id FROM cart WHERE user_email='$email_login' and checkedout=0)");
+			$sql=mysqli_query($con, "SELECT p.product_image, p.product_name, p.product_cost, p.product_count, c.quantity, p.product_id FROM product p inner join cart c ON c.product_id = p.product_id where p.product_id in (SELECT product_id FROM cart WHERE user_email='$email_login' and checkedout=0)");
 			if(mysqli_num_rows($sql)){
 					while($product_array=mysqli_fetch_array($sql)){
 			?>
@@ -144,7 +146,7 @@ if(isset($_GET["pageno"])){
                     <td class="product-name">
                       <h2 class="h5 text-black"><?php echo $product_array['product_name']; ?></h2>
                     </td>
-					<td>$<?php echo $product_array['product_cost']; ?></td>
+					<td>€<?php echo $product_array['product_cost']; ?></td>
                     
                     <td>
                         <div class="product-thumbnail">
@@ -152,7 +154,7 @@ if(isset($_GET["pageno"])){
 						  <div class="input-group-prepend">
 							<button type="button" class="btn btn-outline-primary js-btn-minus" data-quantity="minus" data-field="<?php echo $product_array["product_id"];?>" >&minus;</button>
 						  </div>
-              <input class="form-control text-center" name="quantity-<?php echo $product_array["product_id"];?>" value=<?php echo $product_array["quantity"]; ?>  placeholder="" >
+              <input class="form-control text-center" name="quantity-<?php echo $product_array["product_id"];?>" value=<?php echo $product_array["quantity"]; ?> />
               <input type="hidden" name="product_count-<?php echo $product_array["product_id"];?>" value="<?php echo $product_array["product_count"];?>"/>
               <input type="hidden" name="product_id-<?php echo $product_array["product_id"];?>" value="<?php echo $product_array["product_id"];?>"/>
 						  <div class="input-group-append">
@@ -162,7 +164,7 @@ if(isset($_GET["pageno"])){
 
 						</div>
                     </td>
-                    <td><?php echo "$";echo $product_array["quantity"]*$product_array['product_cost']; $cart_total+=$product_array["quantity"]*$product_array['product_cost'] ?></td>
+                    <td><?php echo "€";echo $product_array["quantity"]*$product_array['product_cost']; $cart_total+=$product_array["quantity"]*$product_array['product_cost'] ?></td>
                     <td><a href="#" class="btn btn-primary btn-sm" onClick="removeProduct(<?php echo $product_array["product_id"] ?>)">X</a></td>
                   </tr>
                       <?php
@@ -201,7 +203,7 @@ if(isset($_GET["pageno"])){
                     <span class="text-black">Total</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$<?php echo $cart_total;?></strong>
+                    <strong class="text-black">€<?php echo $cart_total;?></strong>
                   </div>
                 </div>
 

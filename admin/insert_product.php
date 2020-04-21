@@ -34,7 +34,7 @@ include("includes/db.php");
 
 			<tr>
 				<td><b>Product Image:</b></td>
-				<td><input class="form-control border-0" type="file" name="product_image" required></td>
+				<td><input class="form-control border-0" type="file" accept="image/*" name="product_image" required></td>
 			</tr>
 
 			<tr>
@@ -55,7 +55,7 @@ include("includes/db.php");
 						<option>Select a category</option>
 						<?php
 							$get_cats = "select * from category";
-							$run_cats = mysqli_query($conn,$get_cats);
+							$run_cats = mysqli_query($con,$get_cats);
 
 							while($row_cats = mysqli_fetch_array($run_cats)){
 								$category_id = $row_cats['category_id'];
@@ -96,9 +96,23 @@ include("includes/db.php");
 		$product_description = $_POST['product_description'];
 		
 		//getting the image from the field
+		// $product_image = $_FILES['product_image']['name'];
+		// $product_image_tmp = $_FILES['product_image']['tmp_name'];
+		// move_uploaded_file($product_image_tmp,"product_images/$product_image");
+
 		$product_image = $_FILES['product_image']['name'];
 		$product_image_tmp = $_FILES['product_image']['tmp_name'];
-		move_uploaded_file($product_image_tmp,"product_images/$product_image");
+
+		$uploaded_ext = substr($product_image, strrpos($product_image, '.') + 1);
+		
+		$uploaded_ext = strtolower($uploaded_ext);
+
+		if ($uploaded_ext == "jpg" || $uploaded_ext == "jpeg" || $uploaded_ext == "png"){
+			move_uploaded_file($product_image_tmp,"product_images/$product_image");
+		}else{
+			 echo "<script>alert('file format not allowed')</script>";
+			 exit();
+		}
 
 		$product_count = $_POST['product_count'];
 		$product_category= $_POST['product_category'];
@@ -108,7 +122,7 @@ include("includes/db.php");
 		
 		 $insert_product = "insert into product (product_name, product_cost, product_description, product_image, product_count, product_category, product_characteristic, product_status) values ('$product_name','$product_cost','$product_description','$product_image','$product_count','$product_category','$product_characteristic', '$product_status')";
 		 
-		 $insert_pro = mysqli_query($conn, $insert_product);
+		 $insert_pro = mysqli_query($con, $insert_product);
 		 
 		 if($insert_pro){
 		 

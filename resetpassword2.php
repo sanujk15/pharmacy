@@ -14,13 +14,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     $sql = "SELECT email FROM login WHERE email='$email' AND resetpass=1 AND token='$token'";
-	$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+	$resultset = mysqli_query($con, $sql) or die("database error:". mysqli_error($con));
 	$result_length = mysqli_num_rows($resultset);
 
 	if($result_length == 1){
 		$updateQuery = "UPDATE login SET password='$new_password', resetpass=0 WHERE email='$email'";
-		mysqli_query($conn, $updateQuery);
-		if (mysqli_query($conn, $updateQuery)) {
+		mysqli_query($con, $updateQuery);
+		if (mysqli_query($con, $updateQuery)) {
+			$q = "UPDATE LoginAttempts SET Attempts = 0 WHERE email = '$email'";
+  			mysqli_query($con, $q);
+
 			echo "success";
 		}else{
 			echo "failed";

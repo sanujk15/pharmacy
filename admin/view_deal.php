@@ -23,7 +23,7 @@ else {
 
 	$get_deal = "select * from deal";
 	
-	$run_deal = mysqli_query($conn, $get_deal); 
+	$run_deal = mysqli_query($con, $get_deal); 
 	
 	$i = 0;
 	

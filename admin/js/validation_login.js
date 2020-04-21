@@ -9,8 +9,10 @@ $(document).ready(function(){
 	$('#passwordspan').hide();
 	
 	//name validation
-	var passwords = $('#pwd_login').val()
-	var email = $('#email_login').val()
+	
+	var passwords = $('#pwd_login').val();
+	var email_pattern = /^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+	var email = $('#email_login').val();
 	var email_flag = false;
 	var password_flag = false;
 	
@@ -21,8 +23,7 @@ $(document).ready(function(){
 		$('#passwordspan').show();
 		password_flag = false;
 	}
-	
-	else if(passwords != ''){
+	else{
 		$('#passwordspan').removeClass("error");
 		$('#passwordspan').hide();
 		password_flag = true;
@@ -45,7 +46,7 @@ $(document).ready(function(){
 	//setup variables
 	var form = $(this),
 	formData = form.serialize(),
-	formUrl = "login.php",
+	formUrl = "adminlogin.php",
 	formMethod = form.attr('method')
 
 	//send data to server
@@ -55,14 +56,12 @@ $(document).ready(function(){
 		data: formData,
 		success:function(data){
 				if(data === "success"){
-					window.location.href="shop.php";
+					$('#login')[0].reset();
+					window.location.href="index.php?logged_in = You have successfully Logged in!','_self";
 				}
 				else alert(data);
 			}
 		});
-		
-	$('#login')[0].reset();
-	//closeForm();
 	}
 	
 	return false;

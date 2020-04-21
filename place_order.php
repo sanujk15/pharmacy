@@ -20,14 +20,18 @@ if(isset($_SESSION["email_login"])){
             
 
         // Create connection
-        
-		include_once("db_connect.php");
+        $con = mysqli_connect($servername, $username, $password, "pharmacy_db");
+
+        // Check connection
+        if (mysqli_connect_error()) {
+            die("Connection failed: " . $con->connect_error);
+        }
 		
-		$result = mysqli_query($conn, $update_order);
+		$result = mysqli_query($con, $update_order);
 		
         if ($result){
 			$sql = "DELETE FROM cart where user_email='$customer_id'";
-			if(mysqli_query($conn, $sql)){
+			if(mysqli_query($con, $sql)){
 				unset($_SESSION["coupon_cost"]);
 				echo "success";	
 			}

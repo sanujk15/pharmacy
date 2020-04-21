@@ -14,19 +14,13 @@
 			
 	if(isset($_POST["action"]))
  {
-	 if (isset($_POST['pageno']) && $_POST['pageno'] > 0) {
+	 if (isset($_POST['pageno'])) {
             $pageno = $_POST['pageno'];
         } else {
             $pageno = 1;
         }
         $no_of_records_per_page = 9;
-
-        if($pageno == 1){
-        	$offset = 0;
-        }else{
-        	$offset = ($pageno-1) * $no_of_records_per_page;
-        }
-        
+        $offset = ($pageno-1) * $no_of_records_per_page;
 
 			
 			$total_pages_sql = "SELECT COUNT(*) FROM product ";
@@ -39,7 +33,7 @@
 			if($search_query!="")
 				$total_pages_sql.=" where (product_name like '%".$search_query."%' or product_description like '%".$search_query."%') and  product_status = '1' ";
 
-			$result = mysqli_query($conn,$total_pages_sql);
+			$result = mysqli_query($con,$total_pages_sql);
 			$total_rows = mysqli_fetch_array($result)[0];
 			$total_pages = ceil($total_rows / $no_of_records_per_page);
 
@@ -66,8 +60,8 @@
 	}
 
 	$query .= "LIMIT $offset, $no_of_records_per_page";
-	//$sql=mysqli_query($conn, $query);
-	$sql = mysqli_query($conn, $query) or die("database error:". mysqli_error($conn));
+	
+	$sql=mysqli_query($con, $query);
 	// if(gettype($sql) == boolean)
 	// {
 	// $sql = (object)$sql;
@@ -87,7 +81,7 @@
                   </figure>
 				  <div class="block-4-text p-4">
 				  <h3><a href="shop-single.php?product_id=<?php echo $product_array["product_id"]; ?>"><?php echo $product_array["product_name"]; ?></a></h3>
-                    <p class="text-primary font-weight-bold"><?php echo "$".$product_array["product_cost"]; ?></p>
+                    <p class="text-primary font-weight-bold"><?php echo "€".$product_array["product_cost"]; ?></p>
                   </div>
                 </div>
               </div>

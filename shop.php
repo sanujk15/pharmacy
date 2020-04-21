@@ -1,4 +1,4 @@
-<?Php
+<?php
 session_start();
 $search_query = '';
 if(isset($_GET["query"])){
@@ -45,7 +45,8 @@ if(isset($_GET["pageno"])){
 
             <div class="col-6 col-md-4 order-2 order-md-1">
               <form action="shop.php" class="site-block-top-search">
-                <input type="text" name="query" class="form-control border-0" placeholder="Search" value="<?php echo $search_query;?>">
+                <!-- <input type="text" name="query" class="form-control border-0" placeholder="Search" value="<?php echo $search_query;?>"> -->
+                <input type="text" name="query" class="form-control border-0" placeholder="Search" value="<?php echo htmlspecialchars(strip_tags($search_query));?>">       
               </form>
             </div>
 
@@ -103,16 +104,18 @@ if(isset($_GET["pageno"])){
 			    <?php
 					include_once("db_connect.php");
 
-          $sql=mysqli_query($conn, "SELECT * FROM category where category_status='1'");
+          $sql=mysqli_query($con, "SELECT * FROM category where category_status='1'");
 
 					if(mysqli_num_rows($sql)){
 					while($product_array=mysqli_fetch_array($sql)){
-              ?>
-              <div class="list-group-item checkbox">
-                  <label><input type="checkbox" <?php if(in_array(trim($product_array['category_name']),$categories)) echo 'checked'; else echo 'test'; ?> class="common_selector category" value="<?php echo $product_array['category_name']; ?>" > <?php echo $product_array['category_name']; ?> </label>
-              </div>
-              <?php    
-              }
+                    
+                 
+                    ?>
+                    <div class="list-group-item checkbox">
+                        <label><input type="checkbox" <?php if(in_array(trim($product_array['category_name']),$categories)) echo 'checked'; else echo 'test'; ?> class="common_selector category" value="<?php echo $product_array['category_name']; ?>" > <?php echo $product_array['category_name']; ?> </label>
+                    </div>
+                    <?php    
+                    }
 					}
                     ?>            
 				</ul>
@@ -164,13 +167,17 @@ function filter_data()
     $(".results").remove();
 	$(".pagination").html("");
 
+    var query = '<?php echo htmlspecialchars($search_query); ?>';
+
+
+
     $.ajax({
         url:"fetch_data.php",
         method:"POST",
         data:{
           action:action,
           category:category, 
-          query: '<?php echo $search_query; ?>', 
+          query: query, 
           pageno: '<?php echo $page_no;?>'
         },
         success:function(data){

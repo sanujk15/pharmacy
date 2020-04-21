@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 	$sql = "SELECT * FROM login WHERE email='$user_email'";
-	$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+	$resultset = mysqli_query($con, $sql) or die("database error:". mysqli_error($con));
 	$result_length = mysqli_num_rows($resultset);
 
 	if($result_length == 1){
@@ -22,8 +22,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	    }
 
 		$updateQuery = "UPDATE login SET resetpass=1 WHERE id='$id'";
-		mysqli_query($conn, $updateQuery);
-		if (! mysqli_query($conn, $updateQuery)) {
+		mysqli_query($con, $updateQuery);
+		if (! mysqli_query($con, $updateQuery)) {
 			echo "error_reset";
             exit(0);
 		}

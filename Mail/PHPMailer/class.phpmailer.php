@@ -835,11 +835,11 @@ class PHPMailer {
     $this->smtp->do_debug = $this->SMTPDebug;
     $hosts = explode(';', $this->Host);
     $index = 0;
-    $connection = $this->smtp->Connected();
+    $conection = $this->smtp->Connected();
 
     // Retry while there is no connection
     try {
-      while($index < count($hosts) && !$connection) {
+      while($index < count($hosts) && !$conection) {
         $hostinfo = array();
         if (preg_match('/^(.+):([0-9]+)$/', $hosts[$index], $hostinfo)) {
           $host = $hostinfo[1];
@@ -866,7 +866,7 @@ class PHPMailer {
             $this->smtp->Hello($hello);
           }
 
-          $connection = true;
+          $conection = true;
           if ($this->SMTPAuth) {
             if (!$this->smtp->Authenticate($this->Username, $this->Password)) {
               throw new phpmailerException($this->Lang('authenticate'));
@@ -874,7 +874,7 @@ class PHPMailer {
           }
         }
         $index++;
-        if (!$connection) {
+        if (!$conection) {
           throw new phpmailerException($this->Lang('connect_host'));
         }
       }

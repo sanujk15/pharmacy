@@ -3,11 +3,11 @@
 	<div class="col-md-9 order-2">
 	<div class="row mb-5">
 	<?php 
-	include("includes/db.php");
+ 	include_once("../db_connect.php");
 	
 	$get_pro = "select * from product where product_status='1'";
 	
-	$run_pro = mysqli_query($conn, $get_pro); 
+	$run_pro = mysqli_query($con, $get_pro); 
 	
 	$i = 0;
 	
@@ -29,7 +29,7 @@
                   </figure>
 				  <div class="block-4-text p-4">
 				  <h3><?php echo $pro_name;?></h3>
-                    <p class="text-primary font-weight-bold">$<?php echo $pro_cost;?></p>
+                    <p class="text-primary font-weight-bold">€<?php echo $pro_cost;?></p>
 					<a class="btn btn-sm btn-primary" href="index.php?edit_pro=<?php echo $pro_id; ?>">Edit</a>
 					<a class="btn btn-sm btn-primary" href="delete_pro.php?delete_pro=<?php echo $pro_id;?>">Delete</a>
                   </div>
@@ -46,9 +46,8 @@
               <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
               <ul class="list-unstyled mb-0">
 			    <?php
-					$include_once("db_connect.php");
 
-					$sql=mysqli_query($conn, "SELECT * FROM category");
+					$sql=mysqli_query($con, "SELECT * FROM category");
 
 					if(mysqli_num_rows($sql)){
 					while($product_array=mysqli_fetch_array($sql)){

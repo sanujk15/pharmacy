@@ -3,12 +3,12 @@ if($_GET['token'] && $_GET['email']){
 	include_once("db_connect.php");
 	$token = $_GET['token'];
 	$sql = "SELECT token FROM login WHERE token='".$token."' AND email ='".$_GET['email']."'";
-	$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+	$resultset = mysqli_query($con, $sql) or die("database error:". mysqli_error($con));
 	$result_length = mysqli_num_rows($resultset);
 
 	if($result_length == 1){
 		$updateQuery = "UPDATE login SET verified=1 WHERE token='$token'";
-		if (mysqli_query($conn, $updateQuery)) {
+		if (mysqli_query($con, $updateQuery)) {
 			//redirect to login page
 			header('location: login.php?ver=success');
             exit(0);

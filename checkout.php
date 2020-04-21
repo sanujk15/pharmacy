@@ -175,9 +175,20 @@ if(isset($_GET["pageno"])){
                     <tbody>
 					
 					<?php
-						include_once("db_connect.php");
+						$servername = 'localhost';
+						$username = 'root';
+						$password = '';
+							
+
+						// Create connection
+						$con = mysqli_connect($servername, $username, $password, "pharmacy_db");
+
+						// Check connection
+						if (mysqli_connect_error()) {
+							die("Connection failed: " . $con->connect_error);
+						}
 				
-						$sql=mysqli_query($conn, "SELECT * FROM cart inner join product on product.product_id = cart.product_id where user_email = '$email_login'");
+						$sql=mysqli_query($con, "SELECT * FROM cart inner join product on product.product_id = cart.product_id where user_email = '$email_login'");
 						$total_cost = 0;
 						if(mysqli_num_rows($sql)){
 								while($product_array=mysqli_fetch_array($sql)){
@@ -200,7 +211,7 @@ if(isset($_GET["pageno"])){
 					  </tbody>
                       <tr>
                         <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                        <td class="text-black">$<?php echo $total_cost; ?></td>
+                        <td class="text-black">€<?php echo $total_cost; ?></td>
                       </tr>
                       <tr>
                         <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
@@ -208,12 +219,12 @@ if(isset($_GET["pageno"])){
 							if(isset($_SESSION["coupon_cost"])){
 						?>
 						
-                        <td id="discount" class="text-black font-weight-bold"><strong>$<?php echo $total_cost - $_SESSION["coupon_cost"] ?></strong></td>
+                        <td id="discount" class="text-black font-weight-bold"><strong>€<?php echo $total_cost - $_SESSION["coupon_cost"] ?></strong></td>
 						<?php
 							}
 							else{
 						?>
-						<td id="discount" class="text-black font-weight-bold"><strong>$<?php echo $total_cost ?></strong></td>
+						<td id="discount" class="text-black font-weight-bold"><strong>€<?php echo $total_cost ?></strong></td>
 						<?php
 							}
 						?>

@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_phone = $sanitization->sanity_check($user_phone);
 
 	$sql = "SELECT email FROM login WHERE email='$user_email'";
-	$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+	$resultset = mysqli_query($con, $sql) or die("database error:". mysqli_error($con));
 	$result_length = mysqli_num_rows($resultset);
 
 	if($result_length == 0){
@@ -69,11 +69,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			$sql = "INSERT INTO login(`email`, `password`, `full_name`, `phone_number`, `token`, `verified`) VALUES ('".$user_email."', '".$user_password."', '".$user_name."', '".$user_phone."', '".$token."', '0')";
 
 
-			if (mysqli_query($conn, $sql)){
+			if (mysqli_query($con, $sql)){
 				echo "success";
 				die;
 			}else{
-				die("database error:". mysqli_error($conn)."qqq".$sql);
+				die("database error:". mysqli_error($con)."qqq".$sql);
 			}
 
 		} else {

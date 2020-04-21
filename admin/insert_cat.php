@@ -19,7 +19,7 @@
 
 		$insert_cat = "insert into category(category_name, category_status) values('$new_cat', '$cat_status')";
 
-		$run_cat = mysqli_query($conn, $insert_cat);
+		$run_cat = mysqli_query($con, $insert_cat);
 
 		if($run_cat){
 			echo "<script>alert('New Category has been inserted')</script>";

@@ -122,7 +122,7 @@ class POP3 {
   /////////////////////////////////////////////////
 
   private $pop_conn;
-  private $connected;
+  private $conected;
   private $error;     //  Error log array
 
   /**

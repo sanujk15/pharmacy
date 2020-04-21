@@ -80,15 +80,22 @@ if(isset($_GET["pageno"])){
 		<?Php
 			include_once("db_connect.php");
 			
-			$product_id = $_GET['product_id'];
-			//echo $product_id;
-			$sql=mysqli_query($conn, "SELECT * FROM product where product_id = '$product_id'");
-			if(mysqli_num_rows($sql)){
-					while($product_array=mysqli_fetch_array($sql)){
-			?>
-			<div class="col-md-12 mb-0"><a href="index.php">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black"><?php echo $product_array['product_name']; ?></strong></div>
-         			
-		</div>
+      $product_id = $_GET['product_id'];  
+      $product_id = stripslashes($product_id);
+      $product_id = mysqli_real_escape_string($con, strval($product_id));
+      
+      if(is_numeric($product_id)){
+        $stmt = $con->prepare("SELECT * FROM product WHERE product_id = ?");
+        $stmt->bind_param('i',$product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows > 0){
+          while($product_array = $result->fetch_assoc()){
+      ?>
+      <div class="col-md-12 mb-0"><a href="index.php">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black"><?php echo $product_array['product_name']; ?></strong></div>
+              
+    </div>
       </div>
     </div>  
 
@@ -102,7 +109,7 @@ if(isset($_GET["pageno"])){
             <div class="col-md-6">
               <h2 class="text-black"><?php echo $product_array['product_name']; ?></h2>
               <p  class="mb-4"><?php echo $product_array['product_description']; ?></p>
-              <p><strong class="text-primary h4">$<?php echo $product_array['product_cost']; ?></strong></p>
+              <p><strong class="text-primary h4">€<?php echo $product_array['product_cost']; ?></strong></p>
               
               <div class="mb-5">
                   <div class="input-group mb-3" style="max-width: 120px;">
@@ -136,12 +143,13 @@ if(isset($_GET["pageno"])){
         </form>
       </div>
     </div>
-	<script>
-	  var max_count = <?php echo $product_array['product_count']; ?>
-	</script>
+  <script>
+    var max_count = <?php echo $product_array['product_count']; ?>
+  </script>
 <?Php
-					}
-			}
+          }
+        }
+      }
            ?>
 
 

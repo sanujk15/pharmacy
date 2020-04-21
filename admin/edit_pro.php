@@ -160,9 +160,11 @@ if(isset($_GET['edit_pro'])){
 
 			$uploaded_ext = substr($product_image, strrpos($product_image, '.') + 1);
 			
-			$uploaded_ext = strtolower($uploaded_ext);
+			echo $uploaded_ext = strtolower($uploaded_ext);
+
 
 			if ($uploaded_ext == "jpg" || $uploaded_ext == "jpeg" || $uploaded_ext == "png"){
+
 				move_uploaded_file($product_image_tmp,"product_images/$product_image");
 			}else{
 				 echo "<script>alert('file format not allowed')</script>";

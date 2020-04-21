@@ -32,11 +32,7 @@ function addLoginAttempt($value) {
    {
       $attempts = $data["Attempts"]+1;
 
-     if($attempts==5) {
-       $q = "UPDATE LoginAttempts SET Attempts=".$attempts.", lastlogin=NOW() WHERE email = '$value'";
-       $result = mysqli_query($con, $q);
-     }
-     else {
+     if($attempts < 6) {
        $q = "UPDATE LoginAttempts SET Attempts=".$attempts." WHERE email = '$value'";
        $result = mysqli_query($con, $q);
      }

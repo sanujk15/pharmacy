@@ -1,6 +1,8 @@
 <?php
 session_start();
+
 if(isset($_SESSION["email_login"])){
+		include_once("db_connect.php");
 		$fname = $_POST["c_fname"];
 		$lname = $_POST["c_lname"];
 		$address = $_POST["c_address"];
@@ -14,18 +16,7 @@ if(isset($_SESSION["email_login"])){
 		
 		$update_order = "INSERT INTO orders(`fname`,`lname`,`address`,`state_country`,`postalcode`,`email`,`phone_number`,`customer_id`,`deal_code`,`total`) VALUES ('$fname', '$lname', '$address', '$state_country', '$postal_code', '$email', '$phone', '$customer_id','$coupon','$total')";
 
-        $servername = 'localhost';
-        $username = 'root';
-        $password = '';
-            
-
-        // Create connection
-        $con = mysqli_connect($servername, $username, $password, "pharmacy_db");
-
-        // Check connection
-        if (mysqli_connect_error()) {
-            die("Connection failed: " . $con->connect_error);
-        }
+        
 		
 		$result = mysqli_query($con, $update_order);
 		

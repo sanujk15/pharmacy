@@ -21,7 +21,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_SESSION["email_login"]))
 	 $resultset = mysqli_query($con, $sql) or die("database error:". mysqli_error($con));
 	 
 	
-	 if($row = mysqli_fetch_assoc($resultset)){		
+	 if($row = mysqli_fetch_assoc($resultset)){
+	 	if($row['verified'] == 0){
+	 		echo "Please verify your email address to login";
+	 		exit();
+	 	}		
 		if(password_verify($password ,$row['password'])){ 
 		  clearLoginAttempts($email);
 		  $_SESSION['email_login']=$row['email'];

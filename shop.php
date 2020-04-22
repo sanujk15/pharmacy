@@ -59,7 +59,8 @@ if(isset($_GET["pageno"])){
             <div class="text-right col-6 col-md-4 order-3 order-md-3">
               <div class="site-top-icons">
                 <ul>
-                  <li><a href="signup.php"><span class="icon glyphicon glyphicon-user"></span></a></li>
+                  <li><a href="signup.php">New user?Sign up!</a></li>
+                  <li><a href="login.php">LOGIN</a></li>
                   <li><a href="cart.php" class="site-cart"><span class="icon glyphicon glyphicon-shopping-cart"></span>
                   <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span></a></li>
                     </a>

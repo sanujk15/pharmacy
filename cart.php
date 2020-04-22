@@ -300,7 +300,7 @@ if(isset($_GET["pageno"])){
             });
         });
         </script>
-    <?php } else echo "Please <a href='https://pharmacydirect.herokuapp.com/login.php'>login</a> to add to cart." ?>
+    <?php } else echo "Please <a href='https://pharmacydirect.herokuapp.com/login.php'> login </a> to add to cart." ?>
       </div>
     </div>
 <footer class="site-footer border-top">       
